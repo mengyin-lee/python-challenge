@@ -1,4 +1,3 @@
-# A copy from PyBank to start with
 # Modules
 import os
 import csv
@@ -58,19 +57,3 @@ def write_analysis_csv():
           writer.writerows(analysis_csv)
 if 1==1:
      write_analysis_csv
-
-analysispath = os.path.join(budget_analysis_data.csv")
-ana_data = dict()
-with open(analysispath, newline="") as anafile:
-    csv_reader = csv.reader(anafile, delimiter = ",")
-    csv_header = next(anafile)
-    line_count = 0
-    for row in csv_reader:
-        if line_count == 0:
-            ana_data[0] = []
-            ana_data[1] = []
-            line_count += 1
-            
-    reader = csv.reader(anafile)
-    data = list(reader)
-    greatest = max(data, key)
