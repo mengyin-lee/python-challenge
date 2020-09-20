@@ -84,21 +84,25 @@ total_amt = sum(ana_data[1])
 total_avg_amt = sum(ana_data[2])
 Average_chg = total_avg_amt/(line_count-1)
 
-# Direct output to a file, then open the file for print
-# summary_file = os.path.join("..", "analysis", "PyBank_Summary.txt")
+# Print the result to terminal and write to a summary file
 
-# sys.stdout = summary_file
-
+print("Financial Analysis")
+print("--------------------------------------------------------")
 print(f"Total Months: {total_months}")
 print(f"Total: ${total_amt}")
 print(f"Average Change: ${Average_chg}")
-print(f"Greatest Increase in Profits: {max_mth} ${max_num}")
-print(f"Greatest Increase in Profits: {min_mth} ${min_num}")
+print(f"Greatest Increase in Profits: {max_mth} (${max_num})")
+print(f"Greatest Increase in Profits: {min_mth} (${min_num})")
 
-# summary_file.close()
 
-# sys.stdout = sys.__stdout__
-
-# with open(summary_file, newline = "") as summary_file:
-#      data = summary_file.read()
-#      print(data)
+summary_file = os.path.join("analysis", "PyBankSummary.txt")
+with open(summary_file, "w", newline = "") as summary_file:
+     # writer = csv.writer(summary_file)
+     # writer.writerow([])
+     summary_file.write("Financial Analysis\n")
+     summary_file.write("--------------------------------------------------------\n")
+     summary_file.write(f"Total Months: {total_months}\n")
+     summary_file.write(f"Total: ${total_amt}\n")
+     summary_file.write(f"Average Change: ${Average_chg}\n")
+     summary_file.write(f"Greatest Increase in Profits: {max_mth} (${max_num})\n")
+     summary_file.write(f"Greatest Increase in Profits: {min_mth} (${min_num})\n")
