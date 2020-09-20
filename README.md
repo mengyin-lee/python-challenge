@@ -1,6 +1,5 @@
 # python-challenge
-Meng-Yin Lee
-Date: 9/20/2020
+# Meng-Yin Lee/Date: 9/20/2020
 
 # In this challenge, for both PyBank and PyPoll
 # I have used a logic flow that
