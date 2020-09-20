@@ -1,4 +1,5 @@
 # Modules
+import sys
 import os
 import csv
 
@@ -83,8 +84,21 @@ total_amt = sum(ana_data[1])
 total_avg_amt = sum(ana_data[2])
 Average_chg = total_avg_amt/(line_count-1)
 
+# Direct output to a file, then open the file for print
+# summary_file = os.path.join("..", "analysis", "PyBank_Summary.txt")
+
+# sys.stdout = summary_file
+
 print(f"Total Months: {total_months}")
 print(f"Total: ${total_amt}")
 print(f"Average Change: ${Average_chg}")
 print(f"Greatest Increase in Profits: {max_mth} ${max_num}")
 print(f"Greatest Increase in Profits: {min_mth} ${min_num}")
+
+# summary_file.close()
+
+# sys.stdout = sys.__stdout__
+
+# with open(summary_file, newline = "") as summary_file:
+#      data = summary_file.read()
+#      print(data)
