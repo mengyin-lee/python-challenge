@@ -8,4 +8,4 @@
 # Both temporary working files are created as part of the scripts and are checked in for reference
 - PyBank\"budget_w_change.csv"
 - PyPoll\"poll_w_votes.csv"
-# *Analysis Results are save in folder - 'analysis',including Summary reports and termininal printout
+# *Analysis Results are saved in folder - 'analysis',including Summary reports and termininal printout
