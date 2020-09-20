@@ -2,14 +2,6 @@
 import os
 import csv
 
-# month_total = 0
-# net_total = 0
-# pre_row = 0
-# pre_change = 0
-# change = 0
-# greatest_change = 0
-# least_change = 0
-# change_total = 0
 def write_analysis_csv():
      # Set path for file
      budgetpath = os.path.join("Resources", "budget_data.csv")
@@ -18,20 +10,18 @@ def write_analysis_csv():
      Profit_Loss = []
      Change = []
 
-     # # Open budget data csv -- This section works
+     # # Open budget data csv 
      with open(budgetpath) as csvfile:
           csvreader = csv.reader(csvfile, delimiter=",")
-          header = next(csvreader)
+          csv_header = next(csvreader)
           pre_row_amt = 0
           change_amt = 0
           count=0
           for row in csvreader:
                # Add Date
                Date.append(row[0])
-
                # Add Profit_Loss
                Profit_Loss.append(row[1])
-
                # Add Change
                count +=1
                if count == 1:
@@ -44,7 +34,7 @@ def write_analysis_csv():
      analysis_csv = zip(Date, Profit_Loss, Change)
 
      # Set variable for output file
-     output_file = os.path.join("budget_analysis.csv")
+     output_file = os.path.join("budget_w_change.csv")
 
      # Open the output file
      with open(output_file, "w", newline="") as datafile:
@@ -55,21 +45,46 @@ def write_analysis_csv():
 
           # Write in zipped rows
           writer.writerows(analysis_csv)
+     # Run the function to create a csv file with change amount column
 if 1==1:
-     write_analysis_csv
+     write_analysis_csv()
 
-     analysispath = os.path.join(budget_analysis_data.csv")
+analysispath = os.path.join("budget_w_change.csv")
 ana_data = dict()
 with open(analysispath, newline="") as anafile:
     csv_reader = csv.reader(anafile, delimiter = ",")
     csv_header = next(anafile)
     line_count = 0
+    ana_data[0] = []
+    ana_data[1] = []
+    ana_data[2] = []
     for row in csv_reader:
-        if line_count == 0:
-            ana_data[0] = []
-            ana_data[1] = []
-            line_count += 1
-            
-    reader = csv.reader(anafile)
-    data = list(reader)
-    greatest = max(data, key)
+        ana_data[0].append(row[0])
+        ana_data[1].append(float(row[1]))
+        ana_data[2].append(float(row[2]))
+        line_count += 1
+
+def get_date_mth(change_num):
+    getpath = os.path.join("budget_w_change.csv")
+    with open(getpath, newline="") as file:
+        csv_reader = csv.reader(file, delimiter = ",")
+        csv_header = next(file)
+        for row in csv_reader:
+
+            if float(row[2]) == float(change_num):
+                return row[0]
+
+max_num = max(ana_data[2])
+max_mth = str(get_date_mth(max_num))
+min_num = min(ana_data[2])
+min_mth = str(get_date_mth(min_num))
+total_months = line_count
+total_amt = sum(ana_data[1])
+total_avg_amt = sum(ana_data[2])
+Average_chg = total_avg_amt/(line_count-1)
+
+print(f"Total Months: {total_months}")
+print(f"Total: ${total_amt}")
+print(f"Average Change: ${Average_chg}")
+print(f"Greatest Increase in Profits: {max_mth} ${max_num}")
+print(f"Greatest Increase in Profits: {min_mth} ${min_num}")
